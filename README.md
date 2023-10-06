@@ -1,4 +1,4 @@
-This repository hosts code and data for testing C-ESM-EP, and includes a version of C-ESM-EP as a git module
+This repository hosts code and data for testing [C-ESM-EP](https://github.com/jservonnat/C-ESM-EP), and includes a version of C-ESM-EP as a git module
 
 ## Principles for handling code and data
 
@@ -6,12 +6,13 @@ The principle of testing a C-ESM-EP version is to run the copy of a reference co
 
 The reference comparison is included here as directory `reference_comparison` and its reference results as directory `reference_results`. 
 
-The reference results are dependant on the C-ESM-EP code version, the underlying software combination, and the hardware. Regarding the dependency with the C-ESM-EP version, handling C-ESM-EP as a git (sub)module allows to tag C-ESM-EP version together with the results version. Because C-ESM-EP code also includes choosing the underlying software environment (in file setenv_C-ESM-EP.sh), the dependency to that environment is also automatically managed. Regarding the dependency to hardware, one may handle multiple reference results versions as multiple branches of this repository. For the time being, branch `master` applies to ESPRI cluster `spirit`.
+The reference results are dependant on the C-ESM-EP code version, the underlying software combination, and the hardware. Regarding the dependency with the C-ESM-EP version, handling C-ESM-EP as a git (sub)module allows to tag C-ESM-EP version together with the results version. Because C-ESM-EP code also includes commands for choosing the underlying software environment (in file setenv_C-ESM-EP.sh), the dependency to that environment is also automatically managed. Regarding the dependency to hardware, one may handle multiple reference results versions as multiple branches of this repository. For the time being, branch `master` applies to ESPRI cluster `spirit`.
 
 After cloning this repository (and possibly checking out the desired branch), and if you want to test with the recorded C-ESM-EP version, you must force getting its code by :
 
     git submodule update --init --recursive
 	
+When saving a new version of reference results, you should update the content of submodule C-ESM-EP with the (git-clean) version that was used (if changed). Commiting at top level will record the commit of C-ESM-EP
 	
 ## Basis for the tests	
 
@@ -50,6 +51,4 @@ Check job output lies in the script execution dir (see the line just above), and
     Atmosphere_zonmean
     53 pictures are different. See html diff file https://thredds-su.ipsl.fr/thredds/fileServer/ipsl_thredds/ssenesi/C-ESM-EP/test_comparison_ssenesi/Atmosphere_zonmean/diffs/atlas_Atmosphere_zonmean_test_comparison.html
 
-## Updating reference results
 
-When saving new results as the new version of reference results, you should update the content of submodule C-ESM-EP with the (git-clean) version that was used (if changed). Commiting at top level will record the commit of C-ESM-EP
