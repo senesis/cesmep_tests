@@ -1,24 +1,26 @@
 This repository hosts code and data for testing C-ESM-EP, and includes a version of C-ESM-EP as a git module
 
-# Principles for handling code and data
+## Principles for handling code and data
 
 The principle of testing a C-ESM-EP version is to run the copy of a reference comparison and to compare its outputs with the reference results of that reference comparison. 
 
 The reference comparison is included here as directory `reference_comparison` and its reference results as directory `reference_results`. 
 
-The reference results are dependant on the C-ESM-EP code version, the underlying software combination, and the hardware. Regarding the dependency with the C-ESM-EP version, handling C-ESM-EP as a git (sub)module allows to tag C-ESM-EP version together with the results version. Regarding the dependency to the two other factors (hardware and underlying software), one may handle multiple reference results versions as multiple branches of this repository. For the time being, branch `master` applies to ESPRI cluster `spirit`.
+The reference results are dependant on the C-ESM-EP code version, the underlying software combination, and the hardware. Regarding the dependency with the C-ESM-EP version, handling C-ESM-EP as a git (sub)module allows to tag C-ESM-EP version together with the results version. Because C-ESM-EP code also includes choosing the underlying software environment (in file setenv_C-ESM-EP.sh), the dependency to that environment is also automatically managed. Regarding the dependency to hardware, one may handle multiple reference results versions as multiple branches of this repository. For the time being, branch `master` applies to ESPRI cluster `spirit`.
 
 After cloning this repository (and possibly checking out the desired branch), and if you want to test with the recorded C-ESM-EP version, you must force getting its code by :
 
     git submodule update --init --recursive
 	
-# Basis for the tests	
+	
+## Basis for the tests	
 
 In reference results, the outputs undergoing comparison are the comparison-level html files for the atlas, which themselves refer to the individual graphic files (.png). 
 
 The PNG files are compared using ImageMagick with command `compare -compose src -metric AE`. Because the PNG files also include (as a metadata) the CliMAF Reference Syntax expression (CRS) which unambiguously define the content of the graphic, the CRS are also compared when the graphics show a difference.
 
-# Main steps for the tests
+
+## Main steps for the tests
 
 The main test script is [check_ref_comparison.sh](check_ref_comparison.sh) which executes the following : 
 
@@ -28,9 +30,9 @@ The main test script is [check_ref_comparison.sh](check_ref_comparison.sh) which
 
 The check job in turn executes script [compare_results.sh](compare_results.sh); for every component with a difference in some graphs, it generates an hmtl file showing both version for each such graph, and also, if their CRS (CliMAF Reference Syntax value) are not the same, both CRS. The location for such html files is a subdirectory `diff` of the test comparison's output directory, and it is indicated in check job's output (see example further below). This script heavily relies on CliMAF module tests/tools_for_tests.py.
 
-# Executing main script, and output example
+## Executing main script, and output example
 
-Executing the whole test implies the series of commands in script [run_example](run_example)`, which allows to select the C-ESM-EP version used. The script output indicates useful locations :
+Executing the whole test implies the series of commands in script [run_example](run_example), which allows to select the C-ESM-EP version used. The script output indicates useful locations :
 
     Check of C-ESM-EP run for comparison 'reference_comparison' was launched as comparison 'test_comparison' in
        /home/ssenesi/cesmep/test_comparison
@@ -48,6 +50,6 @@ Check job output lies in the script execution dir (see the line just above), and
     Atmosphere_zonmean
     53 pictures are different. See html diff file https://thredds-su.ipsl.fr/thredds/fileServer/ipsl_thredds/ssenesi/C-ESM-EP/test_comparison_ssenesi/Atmosphere_zonmean/diffs/atlas_Atmosphere_zonmean_test_comparison.html
 
-# Updating reference results
+## Updating reference results
 
 When saving new results as the new version of reference results, you should update the content of submodule C-ESM-EP with the (git-clean) version that was used (if changed). Commiting at top level will record the commit of C-ESM-EP
