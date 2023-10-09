@@ -138,7 +138,6 @@ if [ $status -eq 0 ] ; then
     echo -e "#########################################################\n\n\n"
     if [ $setx != 1 ] ; then
 	# House-keeping in case of check success
-	rm tmp.py
 	rm -fR $CESMEP/$testcomp $test_outputs
 	[ ! -z $CESMEP_CLIMAF_CACHE ] && rm -fR $CESMEP_CLIMAF_CACHE
     fi
@@ -148,4 +147,5 @@ else
     echo -e "and test comparison dir at: \n\t$CESMEP/$testcomp "
     echo -e "and its outputs at: \n\t$test_outputs"
 fi
+rm tmp.py
 exit $status

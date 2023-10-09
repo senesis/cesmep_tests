@@ -23,10 +23,11 @@ export setx=0
 
 mail=senesi@posteo.net
 
-# Choose CESMEP carefully : $root/C-ESM-EP should be the version that
-# generated the current reference results. You may wish to test a
-# newer one ?  except if your goal is to test w.r.t. another change
-# (e.g. the module used, see above)
+# Choose CESMEP carefully : when cloning the cesmep_tests repository,
+# and after executing : git submodule update --init --recursive
+# $root/C-ESM-EP should be the version that generated the current
+# reference results. You may wish to test a newer one ?  except if
+# your goal is to test w.r.t. another change
 export CESMEP=$root/C-ESM-EP
 
 $root/check_ref_comparison.sh reference_comparison reference_results $mail
