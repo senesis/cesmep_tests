@@ -87,7 +87,7 @@ done
 # Exit if there are issues and   $strict == 1
 if [ $nok -ne 0 ] && [ $strict -eq 1 ]  ; then
     echo -e "\n\n\n#########################################################"
-    [ "$missing_components" ] && echo -e "Issue : missing components $missing_components (see above)"
+    [ "$missing_components" ] && echo -e "Issue : missing components output directories for $testcomp : $missing_components "
     [ "$issue_components" ] && echo -e "Issue for some plots or data in component(s) $issue_components (see above)"
     echo -e "Stoping checks."
     echo -e "#########################################################\n\n\n"
