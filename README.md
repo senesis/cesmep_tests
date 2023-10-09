@@ -1,18 +1,18 @@
-This repository hosts code and data for testing [C-ESM-EP](https://github.com/jservonnat/C-ESM-EP), and includes a version of C-ESM-EP as a git module
+This repository hosts code and data for testing [C-ESM-EP](https://github.com/jservonnat/C-ESM-EP), and includes a version of C-ESM-EP as a git module (in directory [C-ESM-EP](C-ESM-EP))
 
 ## Principles for handling code and data
 
 The principle of testing a C-ESM-EP version is to run the copy of a reference comparison and to compare its outputs with the reference results of that reference comparison. 
 
-The reference comparison is included here as directory `reference_comparison` and its reference results as directory `reference_results`. 
+The reference comparison is included here as directory [reference_comparison](reference_comparison) and its reference results as directory [reference_results](reference_results). 
 
-The reference results are dependant on the C-ESM-EP code version, the underlying software combination, and the hardware. Regarding the dependency with the C-ESM-EP version, handling C-ESM-EP as a git (sub)module allows to tag C-ESM-EP version together with the results version. Because C-ESM-EP code also includes commands for choosing the underlying software environment (in file setenv_C-ESM-EP.sh), the dependency to that environment is also automatically managed. Regarding the dependency to hardware, one may handle multiple reference results versions as multiple branches of this repository. For the time being, branch `master` applies to ESPRI cluster `spirit`.
+The reference results are dependant on the C-ESM-EP code version, on the underlying software combination, and on hardware. Regarding the dependency with the C-ESM-EP version, handling C-ESM-EP as a git (sub)module allows to tag C-ESM-EP version together with the results version. Because C-ESM-EP code also includes commands for choosing the underlying software environment (in file setenv_C-ESM-EP.sh), the dependency to that environment is also automatically managed. Regarding the dependency to hardware, one may handle multiple reference results versions as multiple branches of this repository. For the time being, branch `master` applies to ESPRI cluster `spirit`.
 
 After cloning this repository (and possibly checking out the desired branch), and if you want to test with the recorded C-ESM-EP version, you must force getting its code by :
 
     git submodule update --init --recursive
 	
-When saving a new version of reference results, you should update the content of submodule C-ESM-EP with the (git-clean) version that was used (if changed). Commiting at top level will record the commit of C-ESM-EP
+When saving a new version of reference results, you should update the content of submodule C-ESM-EP with the (git-clean) version that was used (if changed); that version should also exist in the main C-ESM-EP repository. Commiting at top level will record C-ESM-EP's commit.
 	
 ## Basis for the tests	
 
